@@ -167,6 +167,10 @@ set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\
 " Always show the status line
 set laststatus=2
 
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+
 "==========================================
 " file encode, 文件编码,格式
 "==========================================
@@ -290,7 +294,7 @@ nnoremap <C-e> 2<C-e>
 nnoremap <C-y> 2<C-y>
 
 ""为方便复制，用<F2>开启/关闭行号显示:
-nnoremap <F2> :set nonumber! number?<CR>
+"nnoremap <F2> :set nonumber! number?<CR>
 nnoremap <F3> :set list! list?<CR>
 nnoremap <F4> :set wrap! wrap?<CR>
               "set paste
@@ -365,7 +369,7 @@ nnoremap ` '
 "nnoremap <silent> <leader>d "_d
 "vnoremap <silent> <leader>d "_d
 " remap U to <C-r> for easier redo
-nnoremap U <C-r>
+"nnoremap U <C-r>
 
 "au VimResized * exe "normal! \<c-w>=""
 
@@ -477,7 +481,7 @@ let g:tagbar_autofocus = 1
 "let Tlist_Use_Right_Window = 0
 "let Tlist_WinWidth = 25
 
-"for file search ctrlp, 文件搜索
+"*************************for file search ctrlp, 文件搜索
 Bundle 'kien/ctrlp.vim'
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
@@ -536,26 +540,23 @@ let g:indentLine_char = '¦'
 "for show no user whitespaces
 Bundle 'bronson/vim-trailing-whitespace'
 map <leader><space> :FixWhitespace<cr>
-
-
-
-
+"
 "################### 快速移动 ###################"
-
+"
 "更高效的移动 ,, + w/fx
 Bundle 'Lokaltog/vim-easymotion'
 
-Bundle 'vim-scripts/matchit.zip'
 
 "################### 补全及快速编辑 ###################"
 
 "迄今为止用到的最好的自动VIM自动补全插件
 Bundle 'Valloric/YouCompleteMe'
+let g:ycm_global_ycm_extra_config='/root/.vim/bundle/YouCompleteMe/ycm_extra_conf.py'
 "youcompleteme  默认tab  s-tab 和自动补全冲突
-"let g:ycm_key_list_select_completion=['<c-n>']
-let g:ycm_key_list_select_completion = ['<Down>']
-"let g:ycm_key_list_previous_completion=['<c-p>']
-let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_key_list_select_completion=['<s-j>']
+"let g:ycm_key_list_select_completion =['<TAB>','<Down>']
+let g:ycm_key_list_previous_completion=['<s-k>']
+"let g:ycm_key_list_previous_completion = ['<S-TAB>','<Up>']
 
 
 "快速插入代码片段
@@ -564,15 +565,17 @@ Bundle 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 "定义存放代码片段的文件夹 .vim/snippets下，使用自定义和默认的，将会的到全局，有冲突的会提示
-let g:UltiSnipsSnippetDirectories=["snippets", "bundle/UltiSnips/UltiSnips"]
+let g:UltiSnipsSnippetDirectories=["snippets", "bundle/ultisnips/UltiSnips"]
 
 "快速 加减注释
 Bundle 'scrooloose/nerdcommenter'
 
 " 快速加入修改环绕字符
 Bundle 'tpope/vim-surround'
+
 "for repeat -> enhance surround.vim, . to repeat command
 Bundle 'tpope/vim-repeat'
+
 
 "自动补全单引号，双引号等
 Bundle 'Raimondi/delimitMate'
@@ -586,11 +589,6 @@ vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
 
-"for visual selection
-Bundle 'terryma/vim-expand-region'
-map = <Plug>(expand_region_expand)
-map - <Plug>(expand_region_shrink)
-
 "for mutil cursor
 Bundle 'terryma/vim-multiple-cursors'
 let g:multi_cursor_use_default_mapping=0
@@ -600,7 +598,7 @@ let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 
-
+d
 "################# 语法检查 ###############
 
 " 编辑时自动语法检查标红, vim-flake8目前还不支持,所以多装一个
@@ -628,10 +626,6 @@ let python_highlight_all = 1
 " for golang
 "Bundle 'jnwhiteh/vim-golang'
 
-" for markdown
-Bundle 'plasticboy/vim-markdown'
-let g:vim_markdown_folding_disabled=1
-
 " for javascript
 Bundle "pangloss/vim-javascript"
 let g:html_indent_inctags = "html,body,head,tbody"
@@ -641,8 +635,6 @@ let g:html_indent_style1 = "inc"
 "for jquery
 "Bundle 'nono/jquery.vim'
 
-"for jinja2 highlight
-"Bundle 'Glench/Vim-Jinja2-Syntax'
 
 "for nginx conf file highlight.   need to confirm it works
 Bundle 'thiderman/nginx-vim-syntax'
